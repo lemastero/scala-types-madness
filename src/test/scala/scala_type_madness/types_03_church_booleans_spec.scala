@@ -27,10 +27,31 @@ class types_03_church_booleans_spec extends FunSpec with MustMatchers {
     }
 
     it("|| returns false if both arguments are false") {
-      implicitly[ ChurchTrue  || ChurchFalse =:= ChurchTrue ]
-      implicitly[ ChurchTrue  || ChurchTrue  =:= ChurchTrue ]
+      implicitly[ ChurchTrue  || ChurchFalse =:= ChurchTrue  ]
+      implicitly[ ChurchTrue  || ChurchTrue  =:= ChurchTrue  ]
       implicitly[ ChurchFalse || ChurchFalse =:= ChurchFalse ]
-      implicitly[ ChurchFalse || ChurchTrue  =:= ChurchTrue ]
+      implicitly[ ChurchFalse || ChurchTrue  =:= ChurchTrue  ]
+    }
+
+    it("Xor returns ture if only one argumen is true") {
+      implicitly[ ChurchTrue  Xor ChurchTrue  =:= ChurchFalse ]
+      implicitly[ ChurchTrue  Xor ChurchFalse =:= ChurchTrue  ]
+      implicitly[ ChurchFalse Xor ChurchTrue  =:= ChurchTrue  ]
+      implicitly[ ChurchFalse Xor ChurchFalse =:= ChurchFalse ]
+    }
+
+    it("Nor return true only if both arguments are false") {
+      implicitly[ ChurchTrue  Nor ChurchTrue  =:= ChurchFalse ]
+      implicitly[ ChurchTrue  Nor ChurchFalse =:= ChurchFalse ]
+      implicitly[ ChurchFalse Nor ChurchTrue  =:= ChurchFalse ]
+      implicitly[ ChurchFalse Nor ChurchFalse =:= ChurchTrue  ]
+    }
+
+    it("Nand return false only if both arguments are true") {
+      implicitly[ ChurchTrue  Nand ChurchTrue  =:= ChurchFalse ]
+      implicitly[ ChurchTrue  Nand ChurchFalse =:= ChurchTrue  ]
+      implicitly[ ChurchFalse Nand ChurchTrue  =:= ChurchTrue  ]
+      implicitly[ ChurchFalse Nand ChurchFalse =:= ChurchTrue  ]
     }
 
     it("Not returns oposite value") {
