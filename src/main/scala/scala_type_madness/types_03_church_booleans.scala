@@ -4,6 +4,7 @@ package scala_type_madness
 // based on post on blog Apocalisp by Rúnar Óli
 // https://apocalisp.wordpress.com/2010/06/13/type-level-programming-in-scala-part-3-boolean/
 
+// Importante! - define public API in companion object
 object ChurchBool {
   type Not[Arg <: ChurchBool] = Arg#If[ChurchFalse, ChurchTrue, ChurchBool]
 
@@ -15,6 +16,7 @@ object ChurchBool {
 }
 
 sealed trait ChurchBool {
+  // Importante! - always pass commmon supertype for False and True case
   type If[TTrue <: Common, TFalse <: Common, Common] <: Common
 }
 
