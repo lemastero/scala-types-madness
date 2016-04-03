@@ -47,7 +47,7 @@ class types_03_church_booleans_spec extends FunSpec with MustMatchers {
       implicitly[ ChurchFalse Nor ChurchFalse =:= ChurchTrue  ]
     }
 
-    it("Nand return false only if both arguments are true") {
+    it("Nand returns false only if both arguments are true") {
       implicitly[ ChurchTrue  Nand ChurchTrue  =:= ChurchFalse ]
       implicitly[ ChurchTrue  Nand ChurchFalse =:= ChurchTrue  ]
       implicitly[ ChurchFalse Nand ChurchTrue  =:= ChurchTrue  ]

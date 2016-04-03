@@ -22,7 +22,8 @@ class types_04_peano_num_spec extends FunSpec with MustMatchers {
       type RandomPerson = ChurchBool
 
       // for Peano 0 match returns second type
-      implicitly[PeaonZero#Match[GoAwayIWaitForMyParam, MeMePickMe, RandomPerson] =:= MeMePickMe]
+      implicitly[PeaonZero#Match[GoAwayIWaitForMyParam, MeMePickMe, RandomPerson] =:=
+        MeMePickMe]
     }
 
     it("Peano positive numbers matches first parameter type") {
@@ -31,11 +32,14 @@ class types_04_peano_num_spec extends FunSpec with MustMatchers {
       type BaseType = ChurchBool
 
       // Match for positive returns first type and passes peano number
-      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[PeaonZero]]
+      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:=
+        PickMeIAcceptSexyParams[PeaonZero]]
 
-      // PickMeIAcceptSexyParams completely ignore argument so we can pass whatever, maybe it is a bug ?
+      // PickMeIAcceptSexyParams completely ignore argument
+      // so we can pass whatever, maybe it is a bug ?
       type Whatever = Peano_2
-      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[Whatever]]
+      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:=
+        PickMeIAcceptSexyParams[Whatever]]
     }
 
     it("Peano can check if it is zero") {
@@ -56,9 +60,12 @@ class types_04_peano_num_spec extends FunSpec with MustMatchers {
       type SlowMakingMoney = LT
       type ModerateMakingMoney = EQ
 
-      implicitly[FastMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:= Skinning]
-      implicitly[SlowMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:= Engineering]
-      implicitly[ModerateMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:= Jewelcrafting]
+      implicitly[FastMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:=
+        Skinning]
+      implicitly[SlowMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:=
+        Engineering]
+      implicitly[ModerateMakingMoney#Match[Engineering, Jewelcrafting, Skinning, Profession] =:=
+        Jewelcrafting]
     }
 
     it("gt checks if comparison is exactly greater than") {

@@ -22,7 +22,6 @@ sealed trait MyTrue extends MyBool {
   override type Nand[That <: MyBool] = And[That]#Not
   override type Nor[That <: MyBool] = Or[That]#Not
   override type Xnor[That <: MyBool] = Xor[That]#Not
-
 }
 
 sealed trait MyFalse extends MyBool {
