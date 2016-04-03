@@ -29,8 +29,8 @@ sealed trait EQ extends TComparison {
 }
 
 object PeanoNum {
-  type IsZero[A <: PeanoNum] = A#Match[AkwatsFakse, ChurchTrue, ChurchBool]
-  type AkwatsFakse[A] = ChurchFalse
+  type IsZero[A <: PeanoNum] = A#Match[AlwaysFalse, ChurchTrue, ChurchBool]
+  type AlwaysFalse[A] = ChurchFalse
 }
 
 sealed trait PeanoNum {

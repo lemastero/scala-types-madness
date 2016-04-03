@@ -2,10 +2,48 @@ package scala_type_madness
 
 import org.scalatest.{MustMatchers, FunSpec}
 
+import scala_type_madness.PeanoNum.IsZero
+
 class types_04_peano_num_spec extends FunSpec with MustMatchers {
 
   type Peano_1 = PeaonPositive[PeaonZero]
   type Peano_2 = PeaonPositive[Peano_1]
+
+  describe("Peano numbers") {
+    it("is described by two members") {
+      implicitly[PeaonZero <:< PeanoNum]
+      implicitly[PeaonPositive[PeaonZero] <:< PeanoNum]
+    }
+
+    it("Peano 0 matches sedond parameter type") {
+      // you can pass whatever types you like as long they have common super type
+      type GoAwayIWaitForMyParam[A] = ChurchFalse // and this one need to accept type param
+      type MeMePickMe = ChurchTrue
+      type RandomPerson = ChurchBool
+
+      // for Peano 0 match returns second type
+      implicitly[PeaonZero#Match[GoAwayIWaitForMyParam, MeMePickMe, RandomPerson] =:= MeMePickMe]
+    }
+
+    it("Peano positive numbers matches first parameter type") {
+      type PickMeIAcceptSexyParams[A] = ChurchTrue
+      type LeaveMeAlone = ChurchFalse
+      type BaseType = ChurchBool
+
+      // Match for positive returns first type and passes peano number
+      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[PeaonZero]]
+
+      // PickMeIAcceptSexyParams completely ignore argument so we can pass whatever, maybe it is a bug ?
+      type Whatever = Peano_2
+      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[Whatever]]
+    }
+
+    it("Peano can check if it is zero") {
+      implicitly[IsZero[PeaonZero] =:= ChurchTrue]
+      implicitly[IsZero[Peano_1] =:= ChurchFalse]
+    }
+
+  }
 
   describe("Comparison") {
     it("Match type choose first second or last depends on subtype") {
@@ -48,36 +86,8 @@ class types_04_peano_num_spec extends FunSpec with MustMatchers {
     }
   }
 
-  describe("Peano numbers") {
-    it("is described by two members") {
-      implicitly[PeaonZero <:< PeanoNum]
-      implicitly[PeaonPositive[PeaonZero] <:< PeanoNum]
-    }
-
-    it("Peano 0 matches sedond parameter type") {
-      // you can pass whatever types you like as long they have common super type
-      type GoAwayIWaitForMyParam[A] = ChurchFalse // and this one need to accept type param
-      type MeMePickMe = ChurchTrue
-      type RandomPerson = ChurchBool
-
-      // for Peano 0 match returns second type
-      implicitly[PeaonZero#Match[GoAwayIWaitForMyParam, MeMePickMe, RandomPerson] =:= MeMePickMe]
-    }
-
-    it("Peano positive numbers matches first parameter type") {
-      type PickMeIAcceptSexyParams[A] = ChurchTrue
-      type LeaveMeAlone = ChurchFalse
-      type BaseType = ChurchBool
-
-      // Match for positive returns first type and passes peano number
-      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[PeaonZero]]
-
-      // PickMeIAcceptSexyParams completely ignore argument so we can pass whatever, maybe it is a bug ?
-      type Whatever = Peano_2
-      implicitly[Peano_1#Match[PickMeIAcceptSexyParams, LeaveMeAlone, BaseType] =:= PickMeIAcceptSexyParams[Whatever]]
-    }
-
-    it("comparison examples") {
+  describe("Peano numbers comparison") {
+    it("some examples") {
       implicitly[PeaonZero#Compare[PeaonZero]#eq =:= ChurchTrue]
       implicitly[PeaonZero#Compare[PeaonZero]#lt =:= ChurchFalse]
       implicitly[PeaonZero#Compare[PeaonZero]#gt =:= ChurchFalse]
@@ -85,6 +95,5 @@ class types_04_peano_num_spec extends FunSpec with MustMatchers {
       implicitly[PeaonZero#Compare[Peano_1]#le =:= ChurchTrue]
     }
   }
-
 }
 
