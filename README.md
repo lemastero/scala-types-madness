@@ -27,6 +27,8 @@ it("Nand returns false if both arguments are true") {
   implicitly[ MyFalse#Nand[MyFalse] =:= MyTrue  ]
 }
 ```
+I have used FunSpec from ScalaTest to organize implicitly expressions. Using spec2 was tricky for this.
+
 For comparison purposes there is also [implementation using regular programming techniques] (../master/src/main/scala/scala_type_madness/types_01_boolean.scala).
 
 * Church encoding of boolean type. Base for definition of boolean operators is "if method". Based on post [Type-Level Programming in Scala, Part 3: Boolean](https://apocalisp.wordpress.com/2010/06/13/type-level-programming-in-scala-part-3-boolean/). In addition to original description there are [some tests](../master/src/test/scala/scala_type_madness/types_03_church_booleans_spec.scala):
@@ -46,7 +48,7 @@ object ChurchBool {
 }
 ```
 and more tests:
-```
+```scala
 it("Nor return true only if both arguments are false") {
   implicitly[ ChurchTrue  Nor ChurchTrue  =:= ChurchFalse ]
   implicitly[ ChurchTrue  Nor ChurchFalse =:= ChurchFalse ]
@@ -54,7 +56,7 @@ it("Nor return true only if both arguments are false") {
   implicitly[ ChurchFalse Nor ChurchFalse =:= ChurchTrue  ]
 }
 ```
-* Impllementation of [Peano numbers](../master/src/test/scala/scala_type_madness/types_04_peano_num_spec.scala) based on blog posts [Type-Level Programming in Scala, Part 4a: Peano number basics](https://apocalisp.wordpress.com/2010/06/16/type-level-programming-in-scala-part-4a-peano-number-basics/). To understand this I have work through [some tests](../master/src/main/scala/scala_type_madness/types_04_peano_num.scala) for Match:
+* Impllementation of [Peano numbers](../master/src/test/scala/scala_type_madness/types_04_peano_num_spec.scala) based on blog posts [Type-Level Programming in Scala, Part 4a: Peano number basics](https://apocalisp.wordpress.com/2010/06/16/type-level-programming-in-scala-part-4a-peano-number-basics/). To understand this I have created [tests](../master/src/main/scala/scala_type_madness/types_04_peano_num.scala) for Match:
 ```scala
 it("Peano 0 matches sedond parameter type") {
   // you can pass whatever types you like as long they have common super type
@@ -83,7 +85,7 @@ it("Peano positive numbers matches first parameter type") {
     PickMeIAcceptSexyParams[Whatever]]
 }
 ```
-For next part [Type-Level Programming in Scala, Part 4b: Comparing Peano numbers](https://apocalisp.wordpress.com/2010/06/17/type-level-programming-in-scala-part-4b-comparing-peano-numbers/) tests to ilustrate comparison Match
+For next part [Type-Level Programming in Scala, Part 4b: Comparing Peano numbers](https://apocalisp.wordpress.com/2010/06/17/type-level-programming-in-scala-part-4b-comparing-peano-numbers/) there are tests to ilustrate comparison Match
 ```scala
 it("Match type choose first second or last depends on subtype") {
   trait Profession
@@ -111,3 +113,5 @@ it("gt checks if comparison is exactly greater than") {
     implicitly[LT#gt =:= ChurchFalse]
   }
 ```
+
+IMHO it is worth to implement this stuff by yourself if you want to get type level programming is Scala. Just reading about it - don't work.
