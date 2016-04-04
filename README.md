@@ -116,9 +116,10 @@ it("gt checks if comparison is exactly greater than") {
 ```
 
 ---
-TODO
+More resources
+* [Introduction Type Level Programming in Scala step by step] (http://gigiigig.github.io/tlp-step-by-step/introduction.html)
 * [Shapeless: Exploring Generic Programming in Scala by Miles Sabin](https://www.youtube.com/watch?v=GDbNxL8bqkY)
 * [Introduction to Type-Level Programming by Alexander Lehmann] (https://www.youtube.com/watch?v=WZOzxAP8NpI)
-* [SKI calculus](https://michid.wordpress.com/2010/01/29/scala-type-level-encoding-of-the-ski-calculus/)
-* [resources mentioned on stackoverflow](http://stackoverflow.com/questions/4415511/scala-type-programming-resources)
-* This [excelent blog posts] (http://gigiigig.github.io/tlp-step-by-step/introduction.html)
+* [michid blog posts about meta programming](https://michid.wordpress.com/tag/meta-programming/) including [SKI calculus](https://michid.wordpress.com/2010/01/29/scala-type-level-encoding-of-the-ski-calculus/) 
+* Blog posts by Jesper Nordenberg [1](http://jnordenberg.blogspot.com/2008/08/hlist-in-scala.html) [2](http://jnordenberg.blogspot.com/2008/09/hlist-in-scala-revisited-or-scala.html) [3](http://jnordenberg.blogspot.com/2009/09/type-lists-and-heterogeneously-typed.html)
+* [Community Wiki on Stackoverflow](http://stackoverflow.com/questions/4415511/scala-type-programming-resources)
