@@ -56,6 +56,7 @@ it("Nor return true only if both arguments are false") {
   implicitly[ ChurchFalse Nor ChurchFalse =:= ChurchTrue  ]
 }
 ```
+---
 * Impllementation of [Peano numbers](../master/src/test/scala/scala_type_madness/types_04_peano_num_spec.scala) based on blog posts [Type-Level Programming in Scala, Part 4a: Peano number basics](https://apocalisp.wordpress.com/2010/06/16/type-level-programming-in-scala-part-4a-peano-number-basics/). To understand this I have created [tests](../master/src/main/scala/scala_type_madness/types_04_peano_num.scala) for Match:
 ```scala
 it("Peano 0 matches sedond parameter type") {
@@ -114,4 +115,10 @@ it("gt checks if comparison is exactly greater than") {
   }
 ```
 
-IMHO it is worth to implement this stuff by yourself if you want to get type level programming is Scala. Just reading about it - don't work.
+---
+TODO
+* [Shapeless: Exploring Generic Programming in Scala by Miles Sabin](https://www.youtube.com/watch?v=GDbNxL8bqkY)
+* [Introduction to Type-Level Programming by Alexander Lehmann] (https://www.youtube.com/watch?v=WZOzxAP8NpI)
+* [SKI calculus](https://michid.wordpress.com/2010/01/29/scala-type-level-encoding-of-the-ski-calculus/)
+* [resources mentioned on stackoverflow](http://stackoverflow.com/questions/4415511/scala-type-programming-resources)
+* This [excelent blog posts] (http://gigiigig.github.io/tlp-step-by-step/introduction.html)
